@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:tf/Camera.dart';
+import 'package:tf/GalleryPick.dart';
+import 'package:tf/LiveStream.dart';
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -9,10 +12,10 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
-  GlobalKey _dropdownKey = GlobalKey();
+  GlobalKey _dropdownKey1 = GlobalKey();
 
-  void openDropDown() {
-    final dynamic state = _dropdownKey.currentState;
+  void openDropDown(GlobalKey key) {
+    final dynamic state = key.currentState;
     state.toggleDropdown();
   }
 
@@ -25,50 +28,55 @@ class _LandingState extends State<Landing> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            DropdownButtonHideUnderline(
-              child: DropdownButton(
-                key: _dropdownKey,
-                items: [
-                  DropdownMenuItem(
-                    value: 'Option 1',
-                    child: Text('Option 1'),
+            Container(
+              height: 50,
+              width: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blue, // Set the background color here
+              ),
+              child: Center(
+                child: DropdownButton(
+                  isDense: true, // Reduce vertical padding
+                  //isExpanded: true, // Make the dropdown button wide
+                  icon: Icon(Icons.arrow_drop_down), // Add an arrow icon
+                  iconSize: 24.0, // Icon size
+                  underline: Container(
+                    // Remove the underline
+                    height: 0,
                   ),
-                  DropdownMenuItem(
-                    value: 'Option 2',
-                    child: Text('Option 2'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Option 3',
-                    child: Text('Option 3'),
-                  ),
-                ],
-                onChanged: (value) {
-                  // Handle the selected value here
-                },
+                  hint: Text("Camera"),
+                  key: _dropdownKey1,
+                  items: [
+                    DropdownMenuItem(
+                      value: 'Option 1',
+                      child: Text('Live Stream'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Option 2',
+                      child: Text('Picture'),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    // Handle the selected value here
+                    if (value == 'Option 1') {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LiveStream()));
+                    } else if (value == 'Option 2') {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Camera()));
+                    }
+                  },
+                ),
               ),
             ),
-            DropdownButton(
-              key: _dropdownKey,
-              items: [
-                DropdownMenuItem(
-                  value: 'Option 1',
-                  child: Text('Option 1'),
-                ),
-                DropdownMenuItem(
-                  value: 'Option 2',
-                  child: Text('Option 2'),
-                ),
-                DropdownMenuItem(
-                  value: 'Option 3',
-                  child: Text('Option 3'),
-                ),
-              ],
-              onChanged: (value) {
-                // Handle the selected value here
-              },
-            ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Gallery()));
+              },
               child: DottedBorder(
                 dashPattern: [14, 10],
                 strokeWidth: 2,
@@ -79,19 +87,27 @@ class _LandingState extends State<Landing> {
                   height: 200,
                   width: 200,
                   child: IconButton(
-                      onPressed: () {}, icon: Icon(Icons.file_copy_outlined)),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Gallery()));
+                      },
+                      icon: Icon(Icons.file_copy_outlined)),
                   color: Colors.white,
                 ),
               ),
             ),
             ElevatedButton(
-              onPressed: openDropDown,
+              onPressed: () {
+                openDropDown(_dropdownKey1); // Open the first Dropdown
+              },
               child: Text(' LiveStream '),
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Use camera for pic'),
-            )
+            // ElevatedButton(
+            //   onPressed: () {
+            //     openDropDown(_dropdownKey2); // Open the second Dropdown
+            //   },
+            //   child: Text('Use camera for pic'),
+            // )
           ],
         ),
       ),

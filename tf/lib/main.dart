@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tf/Landing.dart';
-import 'package:tf/camera.dart';
+import 'package:tf/LiveStream.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
 List<CameraDescription>? cameras;
