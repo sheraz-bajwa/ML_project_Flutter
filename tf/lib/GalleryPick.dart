@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:tf/Fonts.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -64,31 +66,44 @@ class _GalleryState extends State<Gallery> {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: selectedImage != null
-                ? Image.file(
-                    File(selectedImage!.path),
-                    height: 200,
-                    width: 200,
-                  )
-                : Container(),
-          ),
-          ElevatedButton(
-            onPressed: selectImage,
-            child: Text("Select Image from Gallery"),
-          ),
-          Text(
-            output,
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: selectImage,
+              child: DottedBorder(
+                dashPattern: [14, 10],
+                strokeWidth: 2,
+                color: Colors.blue,
+                strokeCap: StrokeCap.round,
+                borderType: BorderType.RRect,
+                radius: Radius.circular(5),
+                child: Container(
+                  height: 250,
+                  width: 250,
+                  child: selectedImage != null
+                      ? Image.file(
+                          File(selectedImage!.path),
+                          height: 200,
+                          width: double.infinity,
+                        )
+                      : Icon(
+                          Icons.file_copy_outlined,
+                        ),
+                  color: Colors.white,
+                ),
+              ),
             ),
-          )
-        ],
+            text(
+              data: output,
+              color: Colors.black,
+              size: 25,
+              Bold: FontWeight.bold,
+            ),
+          ],
+        ),
       ),
     );
   }

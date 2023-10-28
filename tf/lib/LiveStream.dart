@@ -1,4 +1,3 @@
-
 // import 'package:flutter/material.dart';
 // import 'package:flutter_tflite/flutter_tflite.dart';
 // import 'package:image_picker/image_picker.dart';
@@ -78,6 +77,7 @@
 // }
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:tf/Fonts.dart';
 import 'package:tf/main.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:tflite_flutter/tflite_flutter_platform_interface.dart';
@@ -166,11 +166,13 @@ class _LiveStreamState extends State<LiveStream> {
                         child: CameraPreview(cameraController!),
                       )),
           ),
-          Text(
-            output,
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-          )
+          text(
+            data: output,
+            color: Colors.black,
+            size: 25,
+            Bold: FontWeight.bold,
+          ),
+          
         ],
       ),
     );
