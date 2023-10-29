@@ -2,97 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:tf/BottomBar.dart';
 import 'package:tf/Camera.dart';
 import 'package:tf/Fonts.dart';
 import 'package:tf/GalleryPick.dart';
 import 'package:tf/LiveStream.dart';
-
-class ContainerGrid extends StatelessWidget {
-  final List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
-  ];
-
-  final List<IconData> icons = [
-    Icons.ac_unit,
-    Icons.access_alarm,
-    Icons.access_time,
-    Icons.account_balance,
-    Icons.account_box,
-    Icons.airport_shuttle,
-  ];
-  final List<double> containerWidths = [100, 150, 80, 120, 200, 100];
-  final List<double> containerHeights = [150, 100, 120, 90, 150, 80];
-
-  final List<void Function()> onTapFunctions = [
-    () {
-      // Function for the first container
-      print('Tapped on the first container');
-    },
-    () {
-      // Function for the second container
-      print('Tapped on the second container');
-    },
-    () {
-      // Function for the third container
-      print('Tapped on the third container');
-    },
-    () {
-      // Function for the fourth container
-      print('Tapped on the fourth container');
-    },
-    () {
-      // Function for the fifth container
-      print('Tapped on the fifth container');
-    },
-    () {
-      // Function for the sixth container
-      print('Tapped on the sixth container');
-    },
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Beautiful Grid View'),
-      ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns
-        ),
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: onTapFunctions[index],
-            child: AnimatedContainer(
-              duration: Duration(seconds: 1),
-              curve: Curves.bounceInOut,
-              width: containerWidths[index],
-              height: containerHeights[index],
-              margin: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: colors[index],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: Center(
-                child: Icon(
-                  icons[index],
-                  size: 64,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -310,210 +224,213 @@ class _LandingState extends State<Landing> {
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20)),child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                'assets/photo.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Live stream',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                'assets/photo.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Live stream',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20)),
-                    child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                'assets/photo.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Live stream',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),)
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     Navigator.push(context,
-                    //         MaterialPageRoute(builder: (context) => Gallery()));
-                    //   },
-                    //   child: DottedBorder(
-                    //     dashPattern: [14, 10],
-                    //     strokeWidth: 2,
-                    //     color: Colors.blue,
-                    //     strokeCap: StrokeCap.round,
-                    //     borderType: BorderType.RRect,
-                    //     radius: Radius.circular(5),
-                    //     child: Container(
-                    //       height: 200,
-                    //       width: 200,
-                    //       child: IconButton(
-                    //           onPressed: () {
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) => Gallery()));
-                    //           },
-                    //           icon: Icon(Icons.file_copy_outlined)),
-                    //       color: Colors.white,
-                    //     ),
+                    // Container(
+                    //   height: 100,
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color.fromARGB(255, 221, 87, 131),
+                    //       borderRadius: BorderRadius.circular(20)),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(8.0),
+                    //           child: Image.asset(
+                    //             'assets/live.png',
+                    //             fit: BoxFit.cover,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Expanded(
+                    //         child: text(
+                    //           color: Colors.white,
+                    //           data: 'Live stream',
+                    //           size: 30,
+                    //           Bold: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //     ],
                     //   ),
                     // ),
                     // SizedBox(
                     //   height: 30,
                     // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
+                    // Container(
+                    //   height: 100,
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //       color: Colors.amber,
+                    //       borderRadius: BorderRadius.circular(20)),
                     //   child: Row(
-                    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //       children: [
-                    //         GestureDetector(
-                    //           onTap: () {
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) => LiveStream()));
-                    //           },
-                    //           child: Expanded(
-                    //               child: Container(
-                    //             decoration: BoxDecoration(
-                    //               borderRadius: BorderRadius.circular(20),
-                    //               color: const Color.fromARGB(255, 7, 255, 40),
-                    //             ),
-                    //             child: Column(
-                    //               mainAxisAlignment: MainAxisAlignment.center,
-                    //               children: [
-                    //                 Expanded(
-                    //                   child: Padding(
-                    //                     padding: const EdgeInsets.all(8.0),
-                    //                     child: Image.asset(
-                    //                       'assets/photo.png',
-                    //                       fit: BoxFit.cover,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 text(
-                    //                   color: Colors.white,
-                    //                   data: 'Live stream',
-                    //                   size: 20,
-                    //                   Bold: FontWeight.bold,
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //             height: 120,
-                    //             width: 120,
-                    //           )),
+                    //     children: [
+                    //       Expanded(
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.all(8.0),
+                    //           child: Image.asset(
+                    //             'assets/photo.png',
+                    //             fit: BoxFit.cover,
+                    //           ),
                     //         ),
-                    //         SizedBox(
-                    //           width: 20,
+                    //       ),
+                    //       Expanded(
+                    //         child: text(
+                    //           color: Colors.white,
+                    //           data: 'Camera',
+                    //           size: 30,
+                    //           Bold: FontWeight.bold,
                     //         ),
-                    //         GestureDetector(
-                    //           onTap: () {
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) => Camera()));
-                    //           },
-                    //           child: Expanded(
-                    //               child: Container(
-                    //             decoration: BoxDecoration(
-                    //               borderRadius: BorderRadius.circular(20),
-                    //               color: Colors.amber,
-                    //             ),
-                    //             height: 120,
-                    //             width: 120,
-                    //             child: Column(
-                    //               mainAxisAlignment: MainAxisAlignment.center,
-                    //               children: [
-                    //                 Expanded(
-                    //                   child: Padding(
-                    //                     padding: const EdgeInsets.all(8.0),
-                    //                     child: Image.asset(
-                    //                       'assets/live.png',
-                    //                       fit: BoxFit.cover,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 text(
-                    //                   color: Colors.white,
-                    //                   data: 'Live stream',
-                    //                   size: 20,
-                    //                   Bold: FontWeight.bold,
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           )),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 30,
+                    // ),
+                    // Container(
+                    //   height: 100,
+                    //   width: double.infinity,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color.fromARGB(255, 5, 106, 189),
+                    //       borderRadius: BorderRadius.circular(20)),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         child: Image.asset(
+                    //           'assets/picture.png',
                     //         ),
-
-                    //         // Container(color: Colors.amber,)
-                    //       ]),
+                    //       ),
+                    //       Expanded(
+                    //         child: text(
+                    //           color: Colors.white,
+                    //           data: 'Gallery',
+                    //           size: 30,
+                    //           Bold: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
                     // )
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Gallery()));
+                        },
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 5, 106, 189),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: Image.asset(
+                                  'assets/picture.png',
+                                ),
+                              ),
+                              Expanded(
+                                child: text(
+                                  color: Colors.white,
+                                  data: 'Gallery',
+                                  size: 30,
+                                  Bold: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LiveStream()));
+                              },
+                              child: Expanded(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: const Color.fromARGB(255, 7, 255, 40),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          'assets/photo.png',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    text(
+                                      color: Colors.white,
+                                      data: 'Live stream',
+                                      size: 20,
+                                      Bold: FontWeight.bold,
+                                    ),
+                                  ],
+                                ),
+                                height: 150,
+                                width: 150,
+                              )),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Camera()));
+                              },
+                              child: Expanded(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.amber,
+                                ),
+                                height: 150,
+                                width: 150,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.asset(
+                                          'assets/live.png',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    text(
+                                      color: Colors.white,
+                                      data: 'Live stream',
+                                      size: 20,
+                                      Bold: FontWeight.bold,
+                                    ),
+                                  ],
+                                ),
+                              )),
+                            ),
+
+                            // Container(color: Colors.amber,)
+                          ]),
+                    )
                   ],
                 ),
               ),
@@ -522,6 +439,7 @@ class _LandingState extends State<Landing> {
             ],
           ),
         ),
+        bottomNavigationBar: MySta(),
       ),
     );
   }
