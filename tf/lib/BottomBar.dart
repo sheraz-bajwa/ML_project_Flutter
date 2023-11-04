@@ -14,7 +14,7 @@ class MySta extends StatelessWidget {
       showUnselectedLabels: true,
       unselectedLabelStyle: TextStyle(color: Colors.white),
       unselectedItemColor: Colors.white,
-      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: Color.fromARGB(255, 153, 22, 174),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(

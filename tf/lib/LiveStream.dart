@@ -1,80 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_tflite/flutter_tflite.dart';
-// import 'package:image_picker/image_picker.dart';
-
-// class Home extends StatefulWidget {
-//   const Home({super.key});
-
-//   @override
-//   State<Home> createState() => _HomeState();
-// }
-
-// class _HomeState extends State<Home> {
-//   String output = "";
-
-//   captureImage() async {
-//     try {
-//       final imagePicker = ImagePicker();
-//       final XFile? imageFile =
-//           await imagePicker.pickImage(source: ImageSource.gallery);
-//       if (imageFile != null) {
-//         runModel(imageFile.path);
-//       }
-//     } catch (e) {
-//       print("Error selecting image: $e");
-//     }
-//   }
-
-//   runModel(String imagePath) async {
-//     var predictions = await Tflite.runModelOnImage(
-//       path: imagePath,
-//       imageMean: 127.5,
-//       imageStd: 127.5,
-//       numResults: 2,
-//       threshold: 0.1,
-//       asynch: true,
-//     );
-//     setState(() {
-//       output = predictions![0]['label'];
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.deepPurple,
-//       ),
-//       body: Column(
-//         children: [
-//           Padding(
-//             padding: EdgeInsets.all(20),
-//             child: Container(
-//               height: 200, // Set the desired image height
-//               width: 200, // Set the desired image width
-//               decoration: BoxDecoration(
-//                 image: DecorationImage(
-//                   image: AssetImage(
-//                       "assets/placeholder_image.png"), // You can use a placeholder image here
-//                   fit: BoxFit.cover,
-//                 ),
-//               ),
-//             ),
-//           ),
-//           ElevatedButton(
-//             onPressed: captureImage,
-//             child: Text("Select Image from Gallery"),
-//           ),
-//           Text(
-//             output,
-//             style: TextStyle(
-//                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:tf/Fonts.dart';
@@ -157,6 +80,11 @@ class _LiveStreamState extends State<LiveStream> {
           Padding(
             padding: EdgeInsets.all(20),
             child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                  color: Colors.pinkAccent,
+                  style: BorderStyle.solid,
+                )),
                 height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
                 child: !cameraController!.value.isInitialized
@@ -172,7 +100,6 @@ class _LiveStreamState extends State<LiveStream> {
             size: 25,
             Bold: FontWeight.bold,
           ),
-          
         ],
       ),
     );

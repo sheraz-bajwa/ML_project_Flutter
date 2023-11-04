@@ -8,6 +8,7 @@ import 'package:tf/GalleryPick.dart';
 import 'package:tf/LiveStream.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:animations/animations.dart';
+import 'package:tf/mainContainer.dart';
 
 class Landing extends StatefulWidget {
   const Landing({super.key});
@@ -17,13 +18,6 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
-  GlobalKey _dropdownKey1 = GlobalKey();
-
-  void openDropDown(GlobalKey key) {
-    final dynamic state = key.currentState;
-    state.toggleDropdown();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -177,99 +171,49 @@ class _LandingState extends State<Landing> {
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 221, 87, 131),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                'assets/live.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Live stream',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Containerrr(
+                      Name: 'Live stream',
+                      color: Color.fromARGB(255, 221, 87, 131),
+                      imag: 'assets/live.png',
+                      fit: BoxFit.cover,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LiveStream()));
+                      },
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.amber,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                'assets/photo.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Camera',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Containerrr(
+                      Name: 'Camera',
+                      color: Colors.amber,
+                      imag: 'assets/photo.png',
+                      fit: BoxFit.cover,
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Camera()));
+                      },
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 100,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 5, 106, 189),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Image.asset(
-                              'assets/picture.png',
-                            ),
-                          ),
-                          Expanded(
-                            child: text(
-                              color: Colors.white,
-                              data: 'Gallery',
-                              size: 30,
-                              Bold: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+                    Containerrr(
+                      Name: 'Gallery',
+                      color: Color.fromARGB(255, 5, 106, 189),
+                      imag: 'assets/picture.png',
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Gallery()));
+                      },
                     ),
                   ]
                       .animate(interval: .200.seconds)
-                      .fadeIn(duration: 1200.ms)
-                      .then(delay: 200.ms) // baseline=800ms
-                      .slide()
+                      .fadeIn(duration: 1200.ms) // baseline=800ms
                       .slideX()
-                      .shimmer(duration: 1200.ms),
+                      .then(delay: 200.ms)
+                      .shimmer(duration: 1500.ms),
                 ),
               ),
 
@@ -279,44 +223,6 @@ class _LandingState extends State<Landing> {
         ),
         bottomNavigationBar: MySta(),
       ),
-    );
-  }
-}
-
-class _TransitionListTile extends StatelessWidget {
-  const _TransitionListTile({
-    this.onTap,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final GestureTapCallback? onTap;
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 15.0,
-      ),
-      leading: Container(
-        width: 40.0,
-        height: 40.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          border: Border.all(
-            color: Colors.black54,
-          ),
-        ),
-        child: const Icon(
-          Icons.play_arrow,
-          size: 35,
-        ),
-      ),
-      onTap: onTap,
-      title: Text(title),
-      subtitle: Text(subtitle),
     );
   }
 }
